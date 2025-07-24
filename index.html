@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PDT</title>
+  <!-- Bootstrap -->
+  <link href="css/bootstrap-4.4.1.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,800italic,400,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/project.css" media="screen" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/iconize.css" />
+    <script src="js/google-code-prettify/prettify.js"></script> -->
+</head>
+
+<!-- cover -->
+<section>
+  <div class="jumbotron text-center mt-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2>PDT: Point Distribution Transformation with Diffusion Models
+          </h2>
+          <h4 style="color:#5a6268;">SIGGRAPH 2025 Conference </h4>
+          <hr>
+          <h6>
+            <a href="https://shanemankiw.github.io/" target="_blank">Jionghao Wang</a><sup>*1</sup>,
+            <a href="https://clinplayer.github.io/" target="_blank">Cheng Lin</a><sup>*2</sup>,
+            <a href="https://liuyuan-pal.github.io/" target="_blank">Yuan Liu</a><sup>3</sup>,
+            <a href="https://ruixu.me/" target="_blank">Rui Xu</a><sup>2</sup>,
+            <a href="https://frank-zy-dou.github.io/" target="_blank">Zhiyang Dou</a><sup>2</sup>,
+            <a href="https://www.xxlong.site/" target="_blank">Xiaoxiao Long</a><sup>4</sup>, <br>
+            <a href="https://haoxiangguo.cn/" target="_blank">Hao-Xiang Guo</a><sup>5</sup>, 
+            <a href="https://i.cs.hku.hk/~taku/" target="_blank">Taku Komura</a><sup>2</sup>,
+            <a href="https://engineering.tamu.edu/cse/profiles/Wang-Wenping.html" target="_blank">Wenping
+              Wang</a><sup>1</sup>,
+            <a href="https://people.tamu.edu/~xinli/" target="_blank">Xin Li</a><sup>1</sup>
+            
+          </h6>
+          <p>
+            <sup>1</sup>Texas A&M University &nbsp;&nbsp;
+            <sup>2</sup>The University of Hong Kong&nbsp;&nbsp;
+            <sup>3</sup>HKUST&nbsp;&nbsp;
+            <sup>4</sup>Nanjing University&nbsp;&nbsp;
+            <sup>5</sup>Skywork AI&nbsp;&nbsp;
+          </p>
+
+          <div class="row justify-content-center">
+            <div class="column">
+              <p class="mb-5"><a class="btn btn-large btn-light" href="https://arxiv.org/abs/2312.05295" role="button" target="_blank">
+                  <i class="fa fa-file"></i> Paper (Arxiv)</a> </p>
+            </div>
+            <div class="column">
+              <p class="mb-5"><a class="btn btn-large btn-light" href="https://github.com/shanemankiw/PDT"
+                  role="button" target="_blank">
+                  <i class="fa fa-github-alt"></i> Code</a> </p>
+            </div>
+            <!-- <div class="column">
+                  <p class="mb-5"><a class="btn btn-large btn-light" href="https://connecthkuhk-my.sharepoint.com/:f:/g/personal/yuanly_connect_hku_hk/EjYHbCBnV-VPjBqNHdNulIABq9sYAEpSz4NPLDI72a85vw" role="button"  target="_blank">
+                    <i class="fa fa-database"></i> Model </a> </p>
+              </div> 
+              <div class="column">
+                  <p class="mb-5"><a class="btn btn-large btn-light" href="https://huggingface.co/spaces/liuyuan-pal/SyncDreamer" role="button"  target="_blank">
+                    <i class="fa fa-desktop"></i> Live Demo </a> </p>
+              </div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- abstract -->
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h3>Abstract</h3>
+
+        <hr style="margin-top:0px">
+        <h6 style="color:#8899a5"> The denoising process of PDT. Our framework learns to use diffusion models to transform points into clustered&structured points distributions, such as surface mesh keypoints, skeletal joints and continuous feature lines. </h6>
+        <div class="video-container" style="display: flex; justify-content: space-around;">
+          <div>
+            <video width="95%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="">
+              <source src="video/teaser_crop.mp4" type="video/mp4">
+            </video>
+            
+          </div>
+
+        </div>
+        
+        <!-- 
+
+        <img class="thumbnail" src="figs/teaser.png" style="width:100%; margin-bottom:20px"> -->
+
+        <br>
+
+        <p class="text-left">
+          Point-based representations have consistently played a vital role in geometric data structures. Most point cloud learning and processing methods typically leverage the unordered and unconstrained nature to represent the underlying geometry of 3D shapes. However, how to extract meaningful structural information from unstructured point cloud distributions and transform them into semantically meaningful point distributions remains an under-explored problem.
+          We present PDT, a novel framework for point distribution transformation with diffusion models. Given a set of input points, PDT learns to transform the point set from its original geometric distribution into a target distribution that is semantically meaningful. Our method utilizes diffusion models with novel architecture and learning strategy, which effectively correlates the source and the target distribution through a denoising process. Through extensive experiments, we show that our method successfully transforms input point clouds into various forms of structured outputs - ranging from surface-aligned keypoints, and inner sparse joints to continuous feature lines. The results showcase our framework's ability to capture both geometric and semantic features, offering a powerful tool for various 3D geometry processing tasks where structured point distributions are desired.
+        </p>
+
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+<br>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2>Overview</h2>
+        <hr style="margin-top:0px">
+        <img class="thumbnail" src="figs/teaser.jpg" style="width:80%; margin-bottom:20px">
+
+        <p class="text-center">
+          Overview of PDT.PDTleveragesadiffusiontransformer-based architecture to transform Gaussian noise into semantically meaningful point distributions, guided by input reference points. We demonstrate the effectiveness of our approach across three structural representations: surface keypoints for artist-inspired meshes, inner skeletal joints for character rigging, and continuous feature lines for garment analysis. 
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<br>
+
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2>Application: Remeshing</h2>
+        <hr style="margin-top:0px">
+        <!-- <img class="thumbnail" src="figs/clothes_gallery.png" style="width:100%; margin-bottom:20px"> -->
+        <video width="100%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="">
+          <source src="video/PDT_remeshing.mp4" type="video/mp4">
+        </video>
+        <p class="text-center">
+          Results & denoising processes of mesh keypoints prediction.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<br>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2>Application: Skeletal Joints Prediction</h2>
+        <hr style="margin-top:0px">
+        <!-- <img class="thumbnail" src="figs/clothes_gallery.png" style="width:100%; margin-bottom:20px"> -->
+        <video width="100%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="">
+          <source src="video/PDT_joints.mp4" type="video/mp4">
+        </video>
+        <p class="text-center">
+          Results & denoising processes of skeletal joints prediction.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<br>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2>Application: Continuous Feature Lines Extraction</h2>
+        <hr style="margin-top:0px">
+        <!-- <img class="thumbnail" src="figs/clothes_gallery.png" style="width:100%; margin-bottom:20px"> -->
+        <video width="100%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="">
+          <source src="video/PDT_garment.mp4" type="video/mp4">
+        </video>
+        <p class="text-center">
+          Results & denoising processes of feature line extraction.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<br>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2>Results Gallery: Remeshing</h2>
+        <hr style="margin-top:0px">
+        <img class="thumbnail" src="figs/gallery_remesh_v2.jpg" style="width:100%; margin-bottom:20px">
+
+        <!-- <p class="text-center">
+          Our disentangled human-clothes representation inherently allows us to change the outfit of a certain avatar,
+          or put the same clothes on different avatars.
+        </p> -->
+      </div>
+    </div>
+  </div>
+</section>
+<br>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2>Results Gallery: Skeletal Joints</h2>
+        <hr style="margin-top:0px">
+        <img class="thumbnail" src="figs/gallery_joints_v1.jpg" style="width:100%; margin-bottom:20px">
+
+        <!-- <p class="text-center">
+          Our disentangled human-clothes representation inherently allows us to change the outfit of a certain avatar,
+          or put the same clothes on different avatars.
+        </p> -->
+      </div>
+    </div>
+  </div>
+</section>
+<br>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2>Results Gallery: Feature Lines</h2>
+        <hr style="margin-top:0px">
+        <img class="thumbnail" src="figs/gallery_garment_v2.jpg" style="width:100%; margin-bottom:20px">
+
+        <!-- <p class="text-center">
+          Our disentangled human-clothes representation inherently allows us to change the outfit of a certain avatar,
+          or put the same clothes on different avatars.
+        </p> -->
+      </div>
+    </div>
+  </div>
+</section>
+<br>
+
+
+<!-- <section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2>Demo Video</h2>
+        <hr style="margin-top:0px">
+        <div class="container">
+          <center>
+            <iframe width="711" height="400" src="https://www.youtube.com/embed/5uAAccGqnPE"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen=""></iframe>
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<br> -->
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2>Core Idea</h2>
+        <hr style="margin-top:0px">
+        <!-- <img class="thumbnail" src="figs/human_body_gallery.png" style="width:100%; margin-bottom:20px"> -->
+        <video width="100%" playsinline="" autoplay="autoplay" loop="loop" preload="" muted="">
+          <source src="video/PDT_process.mp4" type="video/mp4">
+        </video>
+        <p class="text-center">
+          We pair noisy points from Gaussian distribution each with an input point as a per-point reference. Then, our diffusion model is trained to drag and denoise the Gaussian noise into a desired structural points distribution.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<br>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2>Framework</h2>
+        <hr style="margin-top:0px">
+        <img class="thumbnail" src="figs/pipeline.jpg" style="width:100%; margin-bottom:20px">
+
+        <p class="text-center">
+          Architecture overview of our PDT. The model extracts per-point features from input reference points and associates them with corresponding noisy points through adding its positional encoding features. The combined features and timestep embeddings are processed through a series of DiT layers to learn the distribution transformation.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<br>
+
+<!-- <div class="container">
+  <div class="row ">
+    <div class="col-12">
+      <h3>Related Links</h3>
+      <hr style="margin-top:0px">
+      
+      <p class="text-left">
+        Our implementation is heavily based on the amazing <a href="https://github.com/threestudio-project/threestudio" target="_blank">threestudio</a>, shout out to the contributors!
+      </p>
+      <p class="text-left">
+        We'd like to thank the authors of <a href="https://tada.is.tue.mpg.de/" target="_blank">TADA</a>, 
+        <a href="https://idea-research.github.io/DreamWaltz/" target="_blank">DreamWaltz</a>, 
+        <a href="https://hongfz16.github.io/projects/AvatarCLIP.html" target="_blank">AvatarCLIP</a> and 
+        <a href="https://texturepaper.github.io/TEXTurePaper/" target="_blank">TEXTure</a>
+        for making their code public!
+      </p>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- citing -->
+<div class="container">
+  <div class="row ">
+    <div class="col-12">
+      <h3>Citation</h3>
+      <hr style="margin-top:0px">
+      <pre style="background-color: #e9eeef;padding: 1.25em 1.5em">
+<code>@misc{wang2023disentangled,
+      title={Disentangled Clothed Avatar Generation from Text Descriptions}, 
+      author={Jionghao Wang and Yuan Liu and Zhiyang Dou and Zhengming Yu and Yongqing Liang and Xin Li and Wenping Wang and Rong Xie and Li Song},
+      year={2023},
+      eprint={2312.05295},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}</code>
+              </pre>
+      <hr>
+    </div>
+  </div>
+</div>
+
+<footer class="text-center" style="margin-bottom:10px">
+  Thanks to <a href="https://lioryariv.github.io/" target="_blank">Lior Yariv</a> for the website template.
+</footer>
+
+</body>
+
+</html>
