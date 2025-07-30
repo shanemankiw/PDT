@@ -1,5 +1,6 @@
 # PDT
 Official Implementation of SIGGRAPH 2025 paper "Point Distribution Transformation with Diffusion Models"
+Code release coming soon...
 
 <p align="center">
   <img src="assets/teaser_crop.gif" alt="First GIF" style="width: 80%;"/>
