@@ -1,0 +1,8 @@
+name: C:\Users\shane\anaconda3\envs\cu124
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pyg
+  - ninja
+prefix: C:\Users\shane\anaconda3\envs\cu124
