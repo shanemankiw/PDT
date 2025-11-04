@@ -771,7 +771,7 @@ def main():
     opt.beta_start = 3e-7  # 1e-7
     opt.beta_end = 0.1  # 0.3
     opt.schedule_type = "exp"  # "warm0.5"
-    opt.model_mean_type = "eps"
+    opt.model_mean_type = "xstart"
 
     # check_betas(opt.beta_start, opt.beta_end, opt.schedule_type, opt.time_num)
 
